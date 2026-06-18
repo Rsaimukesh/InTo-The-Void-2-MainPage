@@ -26,6 +26,22 @@
                     position: relative;
                 }
 
+                @media (max-width: 767px) {
+                    .hi-card {
+                        width: 180px;
+                        height: 260px;
+                        padding: 1rem;
+                    }
+                    .hi-card div:nth-child(2) {
+                        font-size: 1.25rem !important;
+                    }
+                    .hi-card div:last-child {
+                        font-size: 1.75rem !important;
+                        bottom: 0.75rem !important;
+                        right: 0.75rem !important;
+                    }
+                }
+
                 .hi-card:hover {
                     border-color: #ff003c;
                     box-shadow: 0 0 40px rgba(255, 0, 60, .25);

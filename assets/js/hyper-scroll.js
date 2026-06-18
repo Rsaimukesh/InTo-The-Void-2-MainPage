@@ -36,8 +36,9 @@
             const angle = (i / ITEM_COUNT) * Math.PI * 6;
             items.push({
                 el: wrap, type: 'card',
-                x: Math.cos(angle) * (window.innerWidth * .27),
-                y: Math.sin(angle) * (window.innerHeight * .27),
+                angle: angle,
+                x: 0,
+                y: 0,
                 rot: (Math.random() - .5) * 28, baseZ: -i * Z_GAP
             });
         }
@@ -53,6 +54,21 @@
             baseZ: -Math.random() * LOOP_SIZE
         });
     }
+
+    function updateDimensions() {
+        const isMobile = window.innerWidth < 768;
+        const radiusX = isMobile ? Math.max(160, window.innerWidth * 0.27) : window.innerWidth * 0.27;
+        const radiusY = isMobile ? Math.max(200, window.innerHeight * 0.27) : window.innerHeight * 0.27;
+        
+        items.forEach(item => {
+            if (item.type === 'card') {
+                item.x = Math.cos(item.angle) * radiusX;
+                item.y = Math.sin(item.angle) * radiusY;
+            }
+        });
+    }
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
 
     window.addEventListener('mousemove', e => {
         mouseX = (e.clientX / window.innerWidth - .5) * 2;
